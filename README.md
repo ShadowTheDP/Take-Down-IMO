@@ -17,6 +17,20 @@ Current working areas:
   - Because this is a skill/reference bundle rather than a work subproject, it
     may keep its own `README.md`.
 
+## Current Agent Handoff
+
+When an AI agent enters this repo, use this order:
+
+1. `README.md`
+2. `AGENTS.md`
+3. `docs/agent/current-state.md`
+4. `Math-training/docs/structure-guide.md`
+5. `Changing Description.txt` only if historical detail is needed
+6. the active Typst entry file or shared utility module
+
+This keeps durable repo rules, current work context, and deeper Typst
+structure notes separated.
+
 ## What "Correct Work" Means Here
 
 Human collaborators and AI agents should treat this repo as the parent project
@@ -71,8 +85,8 @@ Current expectation for authoring work:
 
 - Typst CLI available
 - Typst compiler version `0.14.0` or newer
-- Local font asset such as `Math-training/ukai.ttc` available if the current
-  style depends on it
+- Local font asset such as `Math-training/assets/fonts/ukai.ttc` available if
+  the current style depends on it
 
 ## First Useful Commands
 
@@ -91,8 +105,8 @@ git remote -v
 Compile the main authoring documents from the repository root:
 
 ```powershell
-typst compile Math-training/Note-to-EGMO.typ Math-training/output/Note-to-EGMO.pdf
-typst compile Math-training/Note-to-MONT.typ Math-training/output/Note-to-MONT.pdf
+typst compile Math-training/entries/Note-to-EGMO.typ Math-training/output/Note-to-EGMO.pdf
+typst compile Math-training/entries/Note-to-MONT.typ Math-training/output/Note-to-MONT.pdf
 ```
 
 ## Authoring Model
@@ -100,10 +114,10 @@ typst compile Math-training/Note-to-MONT.typ Math-training/output/Note-to-MONT.p
 This repository currently follows a simple model:
 
 1. Source material lives outside the repo in `../../Project-source/Math/` or
-   arrives as Markdown from the sibling `PDF-to-Markdown` project.
+   in your own prepared Markdown notes.
 2. Active Typst writing happens in `Math-training/`.
 3. Existing style and structure should start from
-   `Math-training/Note-to-EGMO.typ`.
+   `Math-training/entries/Note-to-EGMO.typ`.
 4. Shared logic should stay in `Math-training/utils/`.
 5. Generated PDFs and build notes should go to the local `output/` folder of
    the work area that produced them.
@@ -115,11 +129,15 @@ For the current top-level documents, that local output folder is
 
 When editing the main Typst workspace, follow this working pattern:
 
-- Keep book/source-specific documents as top-level Typst entry files.
-- Reuse `Math-training/Note-to-EGMO.typ` as the current style baseline.
-- Treat `Math-training/Note-to-MONT.typ` as the active working document.
-- When starting a new source set, prefer a new top-level entry file such as
-  `Note-to-BOOK.typ`.
+- Keep book/source-specific documents under `Math-training/entries/`.
+- Reuse `Math-training/entries/Note-to-EGMO.typ` as the current style
+  baseline.
+- Treat `Math-training/entries/Note-to-MONT.typ` as the active working
+  document.
+- When starting a new source set, prefer a new entry file such as
+  `Math-training/entries/Note-to-BOOK.typ`.
+- Keep structure notes in `Math-training/docs/`.
+- Keep local font assets in `Math-training/assets/fonts/`.
 - Keep shared layout, math environments, and helper logic in
   `Math-training/utils/`.
 - Change `Math-training/utils/` only when the change is intentionally global.
@@ -181,9 +199,13 @@ Top-level files and folders:
     assets.
 - `README.md`
   - This project working guide and the authoritative repo-wide rule set.
+- `AGENTS.md`
+  - Short operational routing rules for AI agents in this repo.
 - `Changing Description.txt`
   - The single official project change log. Update it after completed work,
-    especially before pushing to GitHub.
+  especially before pushing to GitHub.
+- `docs/agent/current-state.md`
+  - Short current-status handoff file for active work context.
 - `Math-training/`
   - Main authoring directory for Typst work and outputs.
   - Contains current entry files, shared Typst utilities, and local output.
@@ -195,20 +217,24 @@ Top-level files and folders:
 
 Important files inside `Math-training/`:
 
-- `Note-to-EGMO.typ`
+- `entries/`
+  - Typst document entry files.
+- `entries/Note-to-EGMO.typ`
   - Reference Typst implementation and current style baseline.
-- `Note-to-MONT.typ`
+- `entries/Note-to-MONT.typ`
   - Active book-oriented Typst document.
-- `Typst_Project_Structure_Guide.md`
+- `docs/structure-guide.md`
   - Supplemental architecture and workflow reference for the authoring
     workspace.
+- `assets/fonts/`
+  - Local font assets used by the current style when needed.
 - `utils/`
   - Shared Typst modules used by multiple documents.
 - `output/`
   - Current local output folder for the top-level `Math-training/` documents.
-- `ukai.ttc`
+- `assets/fonts/ukai.ttc`
   - Optional local font asset used by the current style. Keep it out of Git
-    unless a human explicitly decides to vendor fonts.
+  unless a human explicitly decides to vendor fonts.
 
 Important files inside `typst-skills/`:
 
@@ -227,6 +253,12 @@ Use each top-level folder for a distinct responsibility:
 - `Math-training/`
   - The only place in this repository where main Typst source files should be
     authored and compiled.
+- `Math-training/entries/`
+  - Entry files that are passed to `typst compile`.
+- `Math-training/docs/`
+  - Authoring-structure notes and local documentation.
+- `Math-training/assets/fonts/`
+  - Local font assets for the Typst workspace when needed.
 - `Math-training/output/`
   - Local generated PDFs and notes. Keep this directory out of Git.
 - `Math-training/utils/init.typ`
@@ -284,8 +316,9 @@ If you are an AI agent working in this repo:
    source folders.
 6. Follow Typst 0.14+ patterns and prefer current Typst idioms over older
    habits when they conflict.
-7. Reuse `Math-training/utils/` and `Math-training/Note-to-EGMO.typ` unless a
-   real global change is necessary.
+7. Reuse `Math-training/utils/` and
+   `Math-training/entries/Note-to-EGMO.typ` unless a real global change is
+   necessary.
 8. Do not add README files to small subprojects.
 9. Skill/reference bundles such as `typst-skills/` may keep their own README
    because they support the main project instead of acting as work

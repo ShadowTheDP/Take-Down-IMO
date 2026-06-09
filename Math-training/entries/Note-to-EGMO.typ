@@ -1,5 +1,5 @@
-#import "utils/utils.typ": *
-#import "utils/init.typ": *
+#import "../utils/utils.typ": *
+#import "../utils/init.typ": *
 
 #show: init.with(
   doc:(

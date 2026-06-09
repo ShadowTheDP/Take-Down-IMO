@@ -9,7 +9,7 @@ media/
 *.log
 
 # Local font assets
-ukai.ttc
+assets/fonts/
 *.ttf
 *.otf
 *.ttc

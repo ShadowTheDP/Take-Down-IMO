@@ -29,3 +29,18 @@ After each meaningful completed task, append:
   merged its operational rules into the repository root README, and preserved
   `typst-skills/README.md` because it is support material for AI-assisted work.
 - Ready to push: yes, after normal review of the staged repo diff.
+
+2026-06-10 00:02
+- Summary: Split `Math-training/` into clearer responsibility zones by moving
+  Typst entry files into `entries/`, the workspace guide into `docs/`, and the
+  local font asset into `assets/fonts/`, then updated compile commands,
+  imports, and agent handoff docs to match.
+- Key files changed: `README.md`, `AGENTS.md`, `docs/agent/current-state.md`,
+  `Math-training/.gitignore`, `Math-training/entries/`, `Math-training/docs/`,
+  `Math-training/assets/fonts/`
+- Verification notes: Confirmed the entry files now live under
+  `Math-training/entries/`, the structure guide now lives under
+  `Math-training/docs/`, and the Typst entry imports were updated from
+  `utils/...` to `../utils/...` so the new entry layout remains valid.
+- Ready to push: yes, after normal review of the staged repo diff and a local
+  compile pass.
